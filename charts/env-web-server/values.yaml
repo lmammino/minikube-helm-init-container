@@ -1,0 +1,24 @@
+# Default values for env-web-server.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+name: test-env-web
+
+replicaCount: 1
+
+image:
+  repository: test-env-web-server
+  initRepository: test-dump-envs
+  pullPolicy: IfNotPresent
+
+listeningPort: 3000
+
+service:
+  type: LoadBalancer
+  port: 80
+
+env:
+  - name: "FOO"
+    value: "BAR"
+  - name: "FOO2"
+    value: "FIGHTERS"
