@@ -55,6 +55,23 @@ To visualize the logs for an init container
 kubectl logs <pod-id> -c <init-container-name> # (in our case "test-env-web-init")
 ```
 
+## Deploy with argo-cd
+
+Needs: `argo-cd` and an authenticated argo cli
+
+To create as argocd app
+
+```bash
+argocd app create test-env-web \
+  --repo https://github.com/lmammino/minikube-helm-init-container \
+  --path argocd \
+  --dest-namespace default \
+  --dest-server https://kubernetes.default.svc \
+  --directory-recurse
+```
+Keep in mind that the images in this project are NOT published anywhere, so you need to build them locally before you can deploy the app. 
+
+This particular setup requires manual synchronisation of deployments (it will not check git)
 
 ## License
 
