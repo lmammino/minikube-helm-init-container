@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-env-web
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: test-env-web
+  source:
+    repoURL: 'https://github.com/lmammino/minikube-helm-init-container'
+    path: charts/env-web-server/
+    targetRevision: HEAD
+    valueFiles:
+      - ../charts/env-web-server/values.yaml
+  destination:
+    namespace: default # TODO: this is for local testing only - replace when using on your own clusters
+    server: https://kubernetes.default.svc
