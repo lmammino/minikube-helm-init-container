@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: env-web-server
 description: A Helm chart for Kubernetes
 
